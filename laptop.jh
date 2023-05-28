@@ -1,0 +1,63 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity LapTop {
+	Code Integer,
+    Company String,
+    Model String,
+    Datepublished String,
+    Price Integer,
+    Heigth Integer,
+    Width Integer,
+    Battery String,
+    Description String,
+}
+
+entity Seller {
+	ID Integer,
+    Name String,
+    PhoneNumber String   
+}
+entity Location {
+	City String,
+	Address String
+}
+
+entity Customer {
+	ID Integer,
+	PhoneNumber String,
+    Name String,
+}
+
+entity Sell{
+	SellId Integer,
+    Date String,
+    
+}
+
+relationship OneToMany {
+ 	Customer to Location
+    Seller to LapTop
+    Customer to LapTop
+    Customer to Sell
+    
+}
+relationship OneToOne {
+	Sell to LapTop
+    Seller to Location
+}
+
+
+
+
+    
