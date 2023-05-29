@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="lapTop">
+      <h2 data-cy="lapTopDetailsHeading"><span jhiTranslate="myApp.lapTop.detail.title">Lap Top</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ lapTop.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.code">Code</span></dt>
+        <dd>
+          <span>{{ lapTop.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.company">Company</span></dt>
+        <dd>
+          <span>{{ lapTop.company }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.model">Model</span></dt>
+        <dd>
+          <span>{{ lapTop.model }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.datepublished">Datepublished</span></dt>
+        <dd>
+          <span>{{ lapTop.datepublished }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.price">Price</span></dt>
+        <dd>
+          <span>{{ lapTop.price }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.heigth">Heigth</span></dt>
+        <dd>
+          <span>{{ lapTop.heigth }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.width">Width</span></dt>
+        <dd>
+          <span>{{ lapTop.width }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.battery">Battery</span></dt>
+        <dd>
+          <span>{{ lapTop.battery }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.description">Description</span></dt>
+        <dd>
+          <span>{{ lapTop.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.seller">Seller</span></dt>
+        <dd>
+          <div *ngIf="lapTop.seller">
+            <a [routerLink]="['/seller', lapTop.seller.id, 'view']">{{ lapTop.seller.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.lapTop.customer">Customer</span></dt>
+        <dd>
+          <div *ngIf="lapTop.customer">
+            <a [routerLink]="['/customer', lapTop.customer.id, 'view']">{{ lapTop.customer.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/lap-top', lapTop.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
