@@ -1,0 +1,73 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230529180446",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "lap_top",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "company",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "model",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datepublished",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "heigth",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "width",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "battery",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LapTop",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "sell",
+      "otherEntityRelationshipName": "lapTop",
+      "ownerSide": false,
+      "relationshipName": "sell",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "seller",
+      "otherEntityRelationshipName": "lapTop",
+      "relationshipName": "seller",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "lapTop",
+      "relationshipName": "customer",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": false,
+  "service": "serviceClass"
+}

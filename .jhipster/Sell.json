@@ -1,0 +1,38 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230529180450",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "sell",
+  "fields": [
+    {
+      "fieldName": "sellId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Sell",
+  "pagination": "infinite-scroll",
+  "readOnly": true,
+  "relationships": [
+    {
+      "otherEntityName": "lapTop",
+      "otherEntityRelationshipName": "sell",
+      "ownerSide": true,
+      "relationshipName": "lapTop",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "sell",
+      "relationshipName": "customer",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

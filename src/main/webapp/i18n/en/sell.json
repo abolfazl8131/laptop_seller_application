@@ -1,0 +1,19 @@
+{
+  "myApp": {
+    "sell": {
+      "home": {
+        "title": "Sells",
+        "refreshListLabel": "Refresh list",
+        "notFound": "No Sells found"
+      },
+      "detail": {
+        "title": "Sell"
+      },
+      "id": "ID",
+      "sellId": "Sell Id",
+      "date": "Date",
+      "lapTop": "Lap Top",
+      "customer": "Customer"
+    }
+  }
+}
