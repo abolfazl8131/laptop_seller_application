@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sell">
+      <h2 data-cy="sellDetailsHeading"><span jhiTranslate="myApp.sell.detail.title">Sell</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ sell.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.sell.sellId">Sell Id</span></dt>
+        <dd>
+          <span>{{ sell.sellId }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.sell.date">Date</span></dt>
+        <dd>
+          <span>{{ sell.date }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.sell.lapTop">Lap Top</span></dt>
+        <dd>
+          <div *ngIf="sell.lapTop">
+            <a [routerLink]="['/lap-top', sell.lapTop.id, 'view']">{{ sell.lapTop.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.sell.customer">Customer</span></dt>
+        <dd>
+          <div *ngIf="sell.customer">
+            <a [routerLink]="['/customer', sell.customer.id, 'view']">{{ sell.customer.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+    </div>
+  </div>
+</div>
