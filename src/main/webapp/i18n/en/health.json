@@ -16,7 +16,6 @@
       "livenessState": "Liveness state",
       "readinessState": "Readiness state",
       "ping": "Application",
-      "elasticsearch": "Elasticsearch",
       "db": "Database"
     },
     "table": {
@@ -26,6 +25,7 @@
     "status": {
       "UNKNOWN": "UNKNOWN",
       "UP": "UP",
+      "OUT_OF_SERVICE": "OUT_OF_SERVICE",
       "DOWN": "DOWN"
     }
   }

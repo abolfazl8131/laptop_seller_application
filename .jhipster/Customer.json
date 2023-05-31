@@ -1,0 +1,35 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230531071520",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "customer",
+  "fields": [
+    {
+      "fieldName": "iD",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Customer",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "location",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

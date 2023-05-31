@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="SellHeading">
+    <span jhiTranslate="myApp.sell.home.title">Sells</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.sell.home.refreshListLabel">Refresh list</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="sells?.length === 0">
+    <span jhiTranslate="myApp.sell.home.notFound">No Sells found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="sells && sells.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sellId">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.sell.sellId">Sell Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="date">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.sell.date">Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customer.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.sell.customer">Customer</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lapTop.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.sell.lapTop">Lap Top</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let sell of sells; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/sell', sell.id, 'view']">{{ sell.id }}</a>
+          </td>
+          <td>{{ sell.sellId }}</td>
+          <td>{{ sell.date }}</td>
+          <td>
+            <div *ngIf="sell.customer">
+              <a [routerLink]="['/customer', sell.customer.id, 'view']">{{ sell.customer.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="sell.lapTop">
+              <a [routerLink]="['/lap-top', sell.lapTop.id, 'view']">{{ sell.lapTop.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/sell', sell.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

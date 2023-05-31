@@ -1,0 +1,33 @@
+{
+  "myApp": {
+    "lapTop": {
+      "home": {
+        "title": "Lap Tops",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Lap Top",
+        "createOrEditLabel": "Create or edit a Lap Top",
+        "notFound": "No Lap Tops found"
+      },
+      "created": "A new Lap Top is created with identifier {{ param }}",
+      "updated": "A Lap Top is updated with identifier {{ param }}",
+      "deleted": "A Lap Top is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Lap Top {{ id }}?"
+      },
+      "detail": {
+        "title": "Lap Top"
+      },
+      "id": "ID",
+      "code": "Code",
+      "company": "Company",
+      "model": "Model",
+      "datepublished": "Datepublished",
+      "price": "Price",
+      "heigth": "Heigth",
+      "width": "Width",
+      "battery": "Battery",
+      "description": "Description",
+      "seller": "Seller"
+    }
+  }
+}
