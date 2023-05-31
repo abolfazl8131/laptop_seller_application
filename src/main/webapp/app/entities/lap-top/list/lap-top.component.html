@@ -1,0 +1,173 @@
+<div>
+  <h2 id="page-heading" data-cy="LapTopHeading">
+    <span jhiTranslate="myApp.lapTop.home.title">Lap Tops</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.lapTop.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-lap-top"
+        [routerLink]="['/lap-top/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.lapTop.home.createLabel"> Create a new Lap Top </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="lapTops?.length === 0">
+    <span jhiTranslate="myApp.lapTop.home.notFound">No Lap Tops found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="lapTops && lapTops.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="code">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.code">Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="company">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.company">Company</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="model">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.model">Model</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="datepublished">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.datepublished">Datepublished</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.price">Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="heigth">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.heigth">Heigth</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="width">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.width">Width</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="battery">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.battery">Battery</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="seller.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.lapTop.seller">Seller</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lapTop of lapTops; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/lap-top', lapTop.id, 'view']">{{ lapTop.id }}</a>
+          </td>
+          <td>{{ lapTop.code }}</td>
+          <td>{{ lapTop.company }}</td>
+          <td>{{ lapTop.model }}</td>
+          <td>{{ lapTop.datepublished }}</td>
+          <td>{{ lapTop.price }}</td>
+          <td>{{ lapTop.heigth }}</td>
+          <td>{{ lapTop.width }}</td>
+          <td>{{ lapTop.battery }}</td>
+          <td>{{ lapTop.description }}</td>
+          <td>
+            <div *ngIf="lapTop.seller">
+              <a [routerLink]="['/seller', lapTop.seller.id, 'view']">{{ lapTop.seller.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/lap-top', lapTop.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/lap-top', lapTop.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(lapTop)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="lapTops && lapTops.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

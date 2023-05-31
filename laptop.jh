@@ -1,0 +1,71 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity LapTop {
+	Code Integer,
+    Company String,
+    Model String,
+    Datepublished String,
+    Price Integer,
+    Heigth Integer,
+    Width Integer,
+    Battery String,
+    Description String,
+}
+
+entity Seller {
+	ID Integer,
+    Name String,
+    PhoneNumber String   
+}
+
+entity Location {
+	City String,
+	Address String
+}
+
+entity Customer {
+	ID Integer,
+	PhoneNumber String,
+    Name String,
+    
+}
+
+@readOnly
+entity Sell{
+	SellId Integer,
+    Date String,
+    
+}
+
+relationship OneToMany {
+ 	Customer{Location} to Location
+    Seller to LapTop
+    
+    
+}
+relationship OneToOne {
+	Sell{Customer} to Customer
+	Sell{LapTop} to LapTop
+    Seller to Location
+}
+
+paginate Sell with infinite-scroll
+paginate LapTop with pagination
+
+service Customer with serviceClass
+service LapTop with serviceClass
+service Seller with serviceClass
+
+search LapTop with elasticsearch
+search Seller with elasticsearch
